@@ -1,6 +1,6 @@
 # Chatroom
 
-**TODO: Add description**
+Just my way of learning Elixir by doing something that requires two-way TCP communication.
 
 ## Installation
 
