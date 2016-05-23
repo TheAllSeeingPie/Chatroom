@@ -4,22 +4,22 @@ defmodule ChatroomTest do
 	doctest Chatroom
 
 	setup do
-		{:ok, server} = Chatroom.Client.start_link
+		{:ok, server} = Client.start_link("Joe")
 		{:ok, server: server}
 	end
 
 	test "Client is connected", %{server: server} do
-		assert Chatroom.Client.chat(server, "Hello world!") == :ok
+		assert Client.chat(server, "Hello world!") == :ok
 	end
 
 	test "Get history returns 1 item", %{server: server} do
-		Chatroom.Client.chat(server, "Hello world!")
-		assert Chatroom.Client.history(server) == ["Hello world!"]
+		Client.chat(server, "Hello world!")
+		assert Client.history(server) == ["Hello world!"]
 	end
 
 	test "Get history returns 2 items", %{server: server} do
-		Chatroom.Client.chat(server, "Hello world!")
-		Chatroom.Client.chat(server, "Second message")
-		assert Chatroom.Client.history(server) == ["Hello world!", "Second message"]
+		Client.chat(server, "Hello world!")
+		Client.chat(server, "Second message")
+		assert Client.history(server) == ["Hello world!", "Second message"]
 	end
 end
